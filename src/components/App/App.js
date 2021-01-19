@@ -18,9 +18,14 @@ class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
-  addOrder(newOrder) {
-    postOrder(newOrder);
-    window.location.reload();
+  addOrder =  async (newOrder) => {
+    await postOrder(newOrder);
+    this.updateNewOrders();
+  }
+
+  updateNewOrders = async () => {
+    const orderStorage = await getOrders();
+    this.setState({orders: orderStorage})
   }
 
   render() {
