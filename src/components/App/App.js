@@ -20,6 +20,7 @@ class App extends Component {
 
   addOrder(newOrder) {
     postOrder(newOrder);
+    window.location.reload();
   }
 
   render() {
