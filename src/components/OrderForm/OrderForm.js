@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.props = props;
     this.state = {
       name: '',
@@ -10,9 +10,9 @@ class OrderForm extends Component {
     };
   }
 
-
   handleSubmit = e => {
     e.preventDefault();
+    this.props.addOrder(this.state)
     this.clearInputs();
   }
 
