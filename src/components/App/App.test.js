@@ -26,9 +26,9 @@ describe('App', () => {
     render(
       <App />
       )
-  });
+  })
   it('should render successfully', () => {
-
+    
     const header = screen.getByText('Burrito Builder');
 
     expect(header).toBeInTheDocument();
@@ -40,9 +40,7 @@ describe('App', () => {
       <App />
       )
 
-    screen.debug();
-
-    const orderNameInput = screen.getByPlaceholderText('Name');
+    const orderNameInput = await waitFor(() => screen.getByPlaceholderText(/Name/i));
     const ingredient = screen.getByRole('button', { name: /beans/i });
     const submitButton = screen.getByRole('button', { name: /submit order/i });
     
@@ -52,10 +50,10 @@ describe('App', () => {
     fireEvent.click(ingredient);
     fireEvent.click(submitButton);
 
-
     const newOrderName = await waitFor(() => screen.getByText('Human'));
     const newOrderIngredient = screen.getByText('beans');
 
     expect(newOrderName).toBeInTheDocument();
+    expect(newOrderIngredient).toBeInTheDocument();
   })
 })
